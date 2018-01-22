@@ -14,12 +14,11 @@ import {
 } from 'material-ui/Table'
 
 const headerStyle = {
-  marginBottom: 8,
-  fontWeight: 400,
-  color: 'rgba(0,0,0,0.45)'
+  margin: '16px 0',
+  color: 'rgba(0,0,0,0.75)'
 }
 
-const TableCellSuccess = props => <TableRowColumn style={{color: '#4CAF50'}}>Test Passed</TableRowColumn>
+const TableCellSuccess = props => <TableRowColumn style={{color: '#4CAF50', fontWeight: 700}}>Test Passed</TableRowColumn>
 const TableCellFail = props => <TableRowColumn style={{color: '#FF1744', fontWeight: 700}}>Test Failed</TableRowColumn>
 const TableCellLink = props => (
   <TableRowColumn>
@@ -50,10 +49,13 @@ const ResultContainer = props => {
             <Table>
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                 <TableRow>
-                  <TableHeaderColumn>App Function</TableHeaderColumn>
+                  <TableHeaderColumn>Function</TableHeaderColumn>
                   <TableHeaderColumn>Desktop</TableHeaderColumn>
                   <TableHeaderColumn>Mobile</TableHeaderColumn>
-                  <TableHeaderColumn>Native</TableHeaderColumn>
+                  {
+                    !props.brand.match(/(ce|ec)/) ?
+                    <TableHeaderColumn>Native</TableHeaderColumn> : null
+                  }
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
@@ -62,7 +64,12 @@ const ResultContainer = props => {
                     <TableRowColumn>{item.ddlFunction}</TableRowColumn>
                     {item.resultDesktop ? <TableCellSuccess /> : <TableCellFail />}
                     {item.resultMobile ? <TableCellSuccess /> : <TableCellFail />}
-                    {item.resultNative ? <TableCellSuccess /> : <TableCellFail />}
+                    {
+                      !props.brand.match(/(ce|ec)/) ?
+                        item.resultNative ?
+                          <TableCellSuccess /> : <TableCellFail />
+                        : null
+                    }
                   </TableRow>
                 ))}
               </TableBody>
@@ -76,7 +83,7 @@ const ResultContainer = props => {
             <Table>
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                 <TableRow>
-                  <TableHeaderColumn>App Function</TableHeaderColumn>
+                  <TableHeaderColumn>Function</TableHeaderColumn>
                   <TableHeaderColumn>Desktop</TableHeaderColumn>
                   <TableHeaderColumn>Mobile</TableHeaderColumn>
                 </TableRow>
@@ -84,7 +91,7 @@ const ResultContainer = props => {
               <TableBody displayRowCheckbox={false}>
                 {props.results.otherLinks.map((item,i) =>(
                   <TableRow key={i}>
-                    <TableRowColumn>{item.ddlFunction || 'None'}</TableRowColumn>
+                    <TableRowColumn>{item.ddlFunction || '---'}</TableRowColumn>
                     <TableCellLink href={item.txtDesktopWebURL}>{item.txtDesktopWebURL}</TableCellLink>
                     <TableCellLink href={item.txtMobileWebURL}>{item.txtMobileWebURL}</TableCellLink>
                   </TableRow>
@@ -107,43 +114,57 @@ class CampaignResults extends Component {
         this.props.results.en && !this.props.dkMode ?
         <ResultContainer
           language="English"
+          brand={this.props.brand}
           results={this.props.results.en} /> : null
       }
       {
         this.props.results.sv ?
         <ResultContainer
           language="Swedish"
+          brand={this.props.brand}
           results={this.props.results.sv} /> : null
       }
       {
         this.props.results.no ?
         <ResultContainer
           language="Norwegian"
+          brand={this.props.brand}
           results={this.props.results.no} /> : null
       }
       {
         this.props.results.fi ?
         <ResultContainer
           language="Finnish"
+          brand={this.props.brand}
           results={this.props.results.fi} /> : null
       }
       {
         this.props.results.da ?
         <ResultContainer
           language="Danish"
+          brand={this.props.brand}
           results={this.props.results.da} /> : null
       }
       {
         this.props.results.is ?
         <ResultContainer
           language="Icelandic"
+          brand={this.props.brand}
           results={this.props.results.is} /> : null
       }
       {
         this.props.results.de ?
         <ResultContainer
           language="German"
+          brand={this.props.brand}
           results={this.props.results.de} /> : null
+      }
+      {
+        this.props.results.pl ?
+        <ResultContainer
+          language="Polish"
+          brand={this.props.brand}
+          results={this.props.results.pl} /> : null
       }
       </div>
     )
@@ -160,6 +181,11 @@ class CampaignResults extends Component {
       fontSize: 14
     }
 
+    const overviewHeaderStyle = {
+      margin: '12px 0',
+      color: 'rgba(0,0,0,0.75)'
+    }
+
     return (
       <div className="CampaignResults">
         <Paper style={{marginBottom: 32}}>
@@ -167,27 +193,27 @@ class CampaignResults extends Component {
             <FlatButton
               onClick={this.props.goToForm}
               label="Change"
-              primary
+              secondary
               style={{float: 'right'}}
               />
-            <h3 style={headerStyle}>Overview:</h3>
+            <h3 style={{marginBottom: 8}}>Overview:</h3>
             <h5 style={{fontSize: 16, fontWeight: 400}}>{this.props.results.defaultURL}</h5>
             <div style={gridStyle} >
               <div>
-                <h4 style={headerStyle}>Product:</h4>
+                <h4 style={overviewHeaderStyle}>Product:</h4>
                 <span style={spanStyle}>{this.props.product.toUpperCase()}</span>
               </div>
               <div>
-                <h4 style={headerStyle}>Opt In Code:</h4>
+                <h4 style={overviewHeaderStyle}>Opt In Code:</h4>
                 <span style={spanStyle}>{this.props.optInCode}</span>
               </div>
               <div>
-                <h4 style={headerStyle}>Campaign ID:</h4>
+                <h4 style={overviewHeaderStyle}>Campaign ID:</h4>
                 <span style={spanStyle}>{this.props.campaignId}</span>
               </div>
               <div>
-                <h4 style={headerStyle}>Default Language</h4>
-                <span style={spanStyle}>{this.props.defaultLanguage}</span>
+                <h4 style={overviewHeaderStyle}>Default Language</h4>
+                <span style={spanStyle}>{this.props.defaultLanguage.toUpperCase()}</span>
               </div>
               <div>
               </div>

@@ -115,6 +115,10 @@ class CampaignInputForm extends Component {
                     value={'lca'}
                     primaryText="Live Casino"
                     />
+                  <MenuItem
+                    value={'dep'}
+                    primaryText="Deposit (only OBG)"
+                    />
                 </SelectField>
               </InputWithIcon>
               <SelectField

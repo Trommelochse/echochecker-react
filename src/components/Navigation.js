@@ -14,6 +14,13 @@ class Navigation extends Component {
     if (brand === 'bs') {
       return Object.assign(style, {background: '#0F0F0F'})
     }
+    if (brand === 'ce') {
+      return Object.assign(style, {background: '#1F294A'})
+    }
+    if (brand === 'ec') {
+      return Object.assign(style, {background: '#213D7E'})
+    }
+    return style
   }
 
   render() {

@@ -60,3 +60,12 @@ li {
 .brand-selector.bs.active {
   background-color: #0f0f0f;
 }
+
+.brand-selector.ce.active {
+  background-color: #1F294A;
+}
+
+.brand-selector.ec.active {
+  background-color: #213D7E;
+  color: #FBE008;
+}

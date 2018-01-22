@@ -4,7 +4,8 @@ const BrandSelector = props => {
   const {brand, onChange} = props;
   const style = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)'
+    gridTemplateColumns: 'repeat(5, 1fr)',
+    gridGap: 8
   }
   return(
     <div style={style}>
@@ -17,6 +18,12 @@ const BrandSelector = props => {
         <span
           onClick={() => onChange('bs')}
           className={'brand-selector bs' + (brand==='bs' ? ' active' : '')}>BS</span>
+        <span
+          onClick={() => onChange('ce')}
+          className={'brand-selector ce' + (brand==='ce' ? ' active' : '')}>CE</span>
+        <span
+          onClick={() => onChange('ec')}
+          className={'brand-selector ec' + (brand==='ec' ? ' active' : '')}>EC</span>
     </div>
   )
 }

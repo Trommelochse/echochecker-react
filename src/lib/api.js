@@ -3,23 +3,21 @@ import axios from 'axios'
 import data from '../data/'
 
 const getPageData = async (brand, id, language) => {
-  // * * * * * * * * * * * * * * * * * * * * * * //
-  // ToDo: Deploy request API server on Heroku   //
-  // * * * * * * * * * * * * * * * * * * * * * * //
 
   const response = await axios.get(`https://quiet-meadow-15372.herokuapp.com/api/${brand}/${id}/${language}`)
-  //const response = await axios.get(`localhost:3044/api/${brand}/${id}/${language}`)
   return response.data
 }
 
-export const getLinks = data => {
+const getLinks = data => {
 
   // converts string to object
   const convertLink = str => {
     try {return JSON.parse(str)}
     catch(err) {
+      const ddlFunction = (str.match(/(casinoeuro|eurocasino)/) && str.match(/\/join\//)) ?
+        'JoinCampaign' : undefined
       return {
-        ddlFunction: undefined,
+        ddlFunction,
         txtDesktopWebURL: str,
         txtMobileWebURL: str,
       }
@@ -73,6 +71,9 @@ const analyzeNativeSettings = (link, product, oic) => {
       }
     }
     else if (product.match(/ca/) && link.ddlSuccessCTA === 'GoToCasinoLobby') {
+      return true
+    }
+    else if (product.match(/dep/) && link.ddlSuccessCTA === 'Deposit') {
       return true
     }
   }
