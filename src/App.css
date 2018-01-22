@@ -47,6 +47,7 @@ li {
 }
 
 .brand-selector.active {
+  border-color: transparent;
   color: #fff;
 }
 

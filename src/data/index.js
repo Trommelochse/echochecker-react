@@ -127,7 +127,7 @@ const bs = {
       sb: 'odds',
       ca: 'casino',
       lca: 'casino\/livecasino', // eslint-disable-line
-      dep: '(odds|casino|casino\/livecasino)'
+      dep: '(odds|casino|casino\/livecasino)' // eslint-disable-line
     }
     const p = productMap[product];
     const desktop = new RegExp(
@@ -154,7 +154,7 @@ const nbdk = {
       sb: 'sports',
       ca: 'casino',
       lca: 'casino\/livecasino', // eslint-disable-line
-      dep: '(sports|casino|casino\/livecasino)'
+      dep: '(sports|casino|casino\/livecasino)' // eslint-disable-line
     }
     const productMapMob = {
       sb: 'sportsbook',
@@ -222,7 +222,7 @@ const ec = {
       `https:\/\/www\.eurocasino\.com` + // eslint-disable-line
       `\/(${language})` + // eslint-disable-line
       `\/(${p})` + // eslint-disable-line
-      `\/join\/${optin}(?=\&|\\s|\/|$)`
+      `\/join\/${optin}(?=\&|\\s|\/|$)` // eslint-disable-line
     )
     const mobile = desktop;
     return {desktop, mobile}
