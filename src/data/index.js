@@ -198,10 +198,10 @@ const ce = {
     }
     const p = promotionsMap[language];
     const desktop = new RegExp(
-      `https:\/\/www\.casinoeuro\.com` + // eslint-disable-line
+      `https:\/\/www\.casinoeuro([0-9]*)?\.com` + // eslint-disable-line
       `\/(${language})` + // eslint-disable-line
       `\/(${p})` + // eslint-disable-line
-      `\/join\/${optin}(?=\&|\\s|\/|$)`
+      `\/join\/${optin}(?=\&|\\s|\/|$)` // eslint-disable-line
     )
     const mobile = desktop;
     return {desktop, mobile}
