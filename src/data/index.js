@@ -40,7 +40,7 @@ const getObgRegEx = (domain, language, product, optin) => {
     `(\/[a-zA-Z0-9-\/]*)?` + // eslint-disable-line
     `(?:\/)?` + // eslint-disable-line
     `\\?(campaign=|modalroute=join-campaign\/)` + // eslint-disable-line
-    `(${optin}(?=\&|$))` // eslint-disable-line
+    `(${optin}(?=\&|\\s|$))` // eslint-disable-line
   )
 }
 
@@ -59,7 +59,7 @@ const be = {
       `(https:\/\/${p}\.betsson\.com)` + // eslint-disable-line
       `\/(${language})(?:\/)?` + // eslint-disable-line
       `(\/[a-zA-Z0-9-\/]*)?` + // eslint-disable-line
-      `(\\?action=join\&campaign=${optin}(?=\&|$))` // eslint-disable-line
+      `(\\?action=join\&campaign=${optin}(?=\&|\\s|$))` // eslint-disable-line
     )
     const mobile = getObgRegEx('betsson', language, product, optin);
     return {desktop, mobile}
@@ -100,7 +100,7 @@ const nb = {
       `\/(${p})` + // eslint-disable-line
       `(\/[a-zA-Z0-9-\/]*)?` + // eslint-disable-line
       `(?:\/)?` + // eslint-disable-line
-      `(\\?action=join\&campaign=${optin}(?=\&|$))` // eslint-disable-line
+      `(\\?action=join\&campaign=${optin}(?=\&|\\s|$))` // eslint-disable-line
      )
     const mobile = getObgRegEx('nordicbet', language, product, optin);
     return {desktop, mobile}
@@ -126,7 +126,7 @@ const bs = {
       `(?:\/)?` + // eslint-disable-line
       `(\\?action=login\&reload=true)` + // eslint-disable-line
       `(\&offer=[a-zA-Z0-9-]+)?` + // eslint-disable-line
-      `(\&campaigncode=${optin}(?=\&|$))` // eslint-disable-line
+      `(\&campaigncode=${optin}(?=\&|\\s|$))` // eslint-disable-line
     )
     const mobile = getObgRegEx('betsafe', language, product, optin);
     return {desktop, mobile}
@@ -152,13 +152,12 @@ const nbdk = {
     const desktop = new RegExp(
       `https:\/\/www\.nordicbet\.dk` + // eslint-disable-line
       `(\/da)?` + // eslint-disable-line
-      `\/(${pd})` + // eslint-disable-line
+      `\/${pd}` + // eslint-disable-line
       `(\/[a-zA-Z0-9-\/]*)?` + // eslint-disable-line
       `(?:\/)?` + // eslint-disable-line
-      `(\\?action=join\&campaign=${optin}(?=\&|$))`  // eslint-disable-line
+      `(\\?action=join\&campaign=${optin}(?=\&|\\s|$))`// eslint-disable-line
     )
-    const pm = productMapMob[product];
-    // https://m.nordicbet.dk/da/sportsbook?modalroute=join-campaign/FootballWeekend3
+    const pm = productMapMob[product]
     const mobile = new RegExp(
       `https:\/\/m\.nordicbet\.dk` + // eslint-disable-line
       `(\/da)` + // eslint-disable-line
