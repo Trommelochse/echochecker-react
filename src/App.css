@@ -1,28 +1,62 @@
-.App {
+body {
+  background-color: #f1f1f1;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+}
+
+aside {
+  grid-column: span 4;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0 0 16px;
+}
+
+h3 {
+  color: #2196F3;
+  font-weight: 400;
+}
+
+li {
+  margin-bottom: 12px;
+  line-height: 1.4em;
+}
+
+.CampaignInputForm {
+  grid-column: span 8;
+}
+
+.CampaignResults {
+  margin-bottom: 64px;
+}
+
+.brand-selector {
+  display: block;
+  background: transparent;
+  color: rgba(0,0,0,0.3);
+  font-size: 12px;
   text-align: center;
+  padding: 6px;
+  border: 1px solid rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.brand-selector:hover {
+  color: rgba(0,0,0,0.6);
+  border-color: rgba(0,0,0,0.6);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.brand-selector.active {
+  color: #fff;
 }
 
-.App-title {
-  font-size: 1.5em;
+.brand-selector.nb.active {
+  background-color: #006EB4;
+}
+.brand-selector.be.active {
+  background-color: #f60;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.brand-selector.bs.active {
+  background-color: #0f0f0f;
 }
